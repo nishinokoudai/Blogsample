@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+   <header>
+    <div class="jumbotron">
+          <center>
+          <h1><span class="glyphicon glyphicon-home"></span> Blog </h1>  
+          <a href="http://localhost:3000/login" class="right btn btn-primary .active" role="button"> login</a>
+          </center>
+    </div>
+   </header>
+ 
+        <center>
+        <%= paginate @posts %>
+        </center>
+
+  <div class="col-xs-3"></div>
+
+    <div class="col-md-6">
+          <% @posts.each do |post| %>
+              <div class="panel panel-info">
+                  
+                  <div class="panel-heading">
+                      <strong><%= post.title %></strong>
+
+                      （<%= post.created_at.strftime("%Y年%m月%d日 %H時%M分")%>）
+                          <strong>
+                          <span class="badge"><span class="glyphicon glyphicon-pencil"></span> <%= post.comments.size %></span>
+                          </strong>  
+                          
+                         
+                  </div>
+                  
+                  <div class="panel-body">
+                      <center>
+                        <% if post.image? %>
+                              <%= image_tag post.image.url %>    
+                        <% end %>
+                         
+                       <div class="well-s"> 
+                          <p><%= post.text %></p>
+                       </div>
+                      </center>     
+                   </div>   
+                </div>
+            <% end %>
+         </div>  
+    </div>  
+</html>

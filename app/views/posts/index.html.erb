@@ -1,0 +1,53 @@
+<!doctype html>
+<html　lang="ja">
+  <head>
+    <div class="jumbotron">
+          <center>
+          <h1><span class="glyphicon glyphicon-home"></span> Blog </h1>  
+          <a href="http://localhost:3000/posts" disabled="disabled" class="right btn btn-primary .active"><span class="glyphicon glyphicon-home"></span> ホーム</a>
+          <a href="http://localhost:3000/posts/new" class="right btn btn-primary .active" role="button"><span class="glyphicon glyphicon-pencil"></span> 投稿する</a>
+          <a href="http://localhost:3000/signup" class="right btn btn-primary .active" role="button"><span class="glyphicon glyphicon-user"></span> 書く人の追加</a>
+          <a href="http://localhost:3000/users/" class="right btn btn-primary .active" role="button"><span class="glyphicon glyphicon-user"></span> 一覧</a>
+          </center>
+      </div>  
+  </head>
+
+        <center>
+        <%= paginate @posts %>
+        </center>
+
+
+    <div class="col-xs-3"></div>
+
+    <div class="col-md-6">
+          <% @posts.each do |post| %>
+                       <div class="text-right">
+                          <%= link_to edit_post_path(post) do%>
+                          <i class="glyphicon glyphicon-file"></i>
+                          <% end %>
+
+                          <%= link_to post_path(post),
+                                      method: :delete, data: { confirm: '削除しますか？' } do%> 
+                          <i class="glyphicon glyphicon-trash"></i>
+                          <% end %>
+                        </div>
+
+
+              <div class="panel panel-info">
+                  <div class="panel-heading">
+                      <%= post.created_at.strftime("%Y年%m月%d日 %H時%M分")%>
+                      <strong><%= link_to post_path(post) do%>
+                          『<%= post.title %>』 
+                          
+                          <span class="badge"><span class="glyphicon glyphicon-pencil"></span> <%= post.comments.size %></span>
+                          <% end %></strong>  
+                  </div>
+              </div>
+
+
+            <% end %>
+    </div>     
+
+
+</html>
+     

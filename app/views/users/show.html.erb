@@ -1,0 +1,34 @@
+<!doctype html>
+ <html>
+    <head>
+        <div class="jumbotron">
+          <center>
+          <h1><span class="glyphicon glyphicon-home"></span> Blog </h1>  
+          <a href="http://localhost:3000/posts" class="right btn btn-primary .active"><span class="glyphicon glyphicon-home"></span> ホーム</a>
+          <a href="http://localhost:3000/posts/new" class="right btn btn-primary .active" role="button"><span class="glyphicon glyphicon-pencil"></span> 投稿する</a>
+          <a href="http://localhost:3000/signup" class="right btn btn-primary .active" role="button"><span class="glyphicon glyphicon-user"></span> 書く人の追加</a>
+          <a href="http://localhost:3000/users/" class="right btn btn-primary .active" role="button"><span class="glyphicon glyphicon-user"></span> 一覧</a>
+          </center>
+        </div>
+    </head>
+
+
+
+		<% provide(:title, @user.name) %>
+		<div class="row">
+		 
+		    <section class="user_info">
+		    <center>
+		      <h2><span class="glyphicon glyphicon-user"></span> ユーザー情報</h2>
+
+		        <p><%= gravatar_for @user %></p>
+                
+		        <p>名前：<%= @user.name %> </p>
+		        
+		        <p>メールアドレス：<%=@user.email %></p>
+		      
+		     </center>
+		    </section>
+		</div>   
+
+ </html>

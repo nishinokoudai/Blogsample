@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+    <head>
+        <div class="jumbotron">
+          <center>
+          <h1><span class="glyphicon glyphicon-home"></span> Blog </h1> 
+          <a href="http://localhost:3000/posts" class="right btn btn-primary .active"><span class="glyphicon glyphicon-home"></span> ホーム</a>
+          <a href="http://localhost:3000/posts/new" class="right btn btn-primary .active" disabled="disabled" role="button"><span class="glyphicon glyphicon-pencil"></span> 投稿する</a>
+          <a href="http://localhost:3000/signup" class="right btn btn-primary .active" role="button"><span class="glyphicon glyphicon-user"></span> 書く人の追加</a>
+          <a href="http://localhost:3000/users/" class="right btn btn-primary .active" role="button"><span class="glyphicon glyphicon-user"></span> 一覧</a>
+          </center>
+        </div>
+    </head>
+  
+
+<%= form_for :post, url: posts_path do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @post.errors.count %>件のエラーが発生したため保存ができませんでした。</h2>
+      
+      <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+        <center>
+        <p><%= msg %></p>
+        </center>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% end %>
+
+<body>
+<div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-info">
+      <div class="panel panel-heading">
+        <span class="glyphicon glyphicon-pencil"></span> 新しい投稿を書く
+      </div>
+        　 <%= form_for :post, url: posts_path do |f| %>
+       
+      <div class="panel-body">
+          <p>
+           <%= f.label :image, "写真を投稿" %><br>
+           <%= f.file_field :image %>
+          </p>
+
+          <p>
+            <%= f.label :title, "タイトル" %><br>
+            <%= f.text_field :title %>
+          </p>
+
+          <p>
+            <%= f.label :text, "内容" %><br>
+            <%= f.text_area :text, cols: 80, rows: 15 %>
+          </p> 
+          
+          <p> 
+            <%= f.submit :投稿する%>
+          </p>
+          <% end %> 
+       </div>     
+      </div>
+    </div>
+</body>
+
+</html>
